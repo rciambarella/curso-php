@@ -13,6 +13,31 @@ $idade = $_POST ['idade'];
 //var_dump($nome);
 //var_dump($idade);
 
+
+if (Empty($nome))
+{
+    echo 'O campo Nome é preenchimento obrigatório!';
+    return;
+}
+
+
+if (strlen ($nome) <3)
+{
+    echo 'O campo Nome deve conter no mínimo três caracteres!';
+    return;
+}
+if (strlen ($nome) >40)
+{
+    echo 'O campo Nome deve conter no máximo quarenta caracteres!';
+    return;
+}
+
+if(!is_numeric ($idade))
+{
+    echo 'digitar somente caracteres numéricos na idade!!!';
+    return;  
+}
+
 if($idade >=6 && $idade <= 12)
 {
     for($i=0; $i <=count($categorias)-1; $i++)
