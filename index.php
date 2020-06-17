@@ -1,3 +1,8 @@
+<?php
+// abertura de sessão php
+    session_start ();
+?>
+
 <doctype html>
 
 <html>
@@ -18,6 +23,22 @@
     <p> Digitar o seu nome completo: <Input type="text" name="nome" /></p>
     <p> Digitar a sua idade: <Input type="text" name="idade" /></p>
     <p> <Input type="Submit" value='Enviar os seus dados!' /></p>
+    
+<?php
+    $mensagemDeSucesso = isset ( $_SESSION [ 'mensagem-de-sucesso' ] )? $_SESSION ['mensagem-de-sucesso'] :'';
+        if(!empty($mensagemDeSucesso))
+        {
+            echo $mensagemDeSucesso;
+        }
+    
+    $mensagemDeErro = isset ( $_SESSION [ 'mensagem-de-erro' ] )? $_SESSION ['mensagem-de-erro'] :'';
+        if(!empty($mensagemDeErro))
+        {
+            echo $mensagemDeErro;
+        }
+        
+?>
+
 </form>
 
 </body>

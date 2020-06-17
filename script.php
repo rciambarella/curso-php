@@ -1,4 +1,11 @@
 <?php
+/**
+ * autor: Rubens Ciambarella
+ * Data: 16/06/2020
+ * Curso de PHP
+ */
+
+ session_start ();
 
 $categorias[] = 'infantil';
 $categorias[] = 'adolescente';
@@ -16,34 +23,44 @@ $idade = $_POST ['idade'];
 
 if (Empty($nome))
 {
-    echo 'O campo Nome é preenchimento obrigatório!';
+    $_SESSION ['mensagem-de-erro'] = 'O campo Nome é preenchimento obrigatório!';
+        header('location: index.php');
+        //  O campo Nome é preenchimento obrigatório!
+        return;
+}
+else if (strlen ($nome) <3)
+{
+    $_SESSION ['mensagem-de-erro'] = 'O campo Nome deve conter no mínimo três caracteres!';
+    header('location: index.php');
+    //echo 'O campo Nome deve conter no mínimo três caracteres!';
     return;
 }
-
-
-if (strlen ($nome) <3)
+else if (strlen ($nome) >40)
 {
-    echo 'O campo Nome deve conter no mínimo três caracteres!';
+    $_SESSION ['mensagem-de-erro'] = 'O campo Nome deve conter no máximo quarenta caracteres!';
+    header('location: index.php');
+    //echo 'O campo Nome deve conter no máximo quarenta caracteres!';
     return;
 }
-if (strlen ($nome) >40)
+else if(!is_numeric ($idade))
 {
-    echo 'O campo Nome deve conter no máximo quarenta caracteres!';
+    $_SESSION ['mensagem-de-erro'] = 'Digitar somente caracteres numéricos na idade!!!';
+    header('location: index.php');
+    //echo 'digitar somente caracteres numéricos na idade!!!';
     return;
-}
-
-if(!is_numeric ($idade))
-{
-    echo 'digitar somente caracteres numéricos na idade!!!';
-    return;  
 }
 
 if($idade >=6 && $idade <= 12)
 {
     for($i=0; $i <=count($categorias)-1; $i++)
     {
-         if($categorias[$i] == 'infantil') 
-            echo "O nadador ".$nome." compete na categoria ". $categorias[$i];
+         if($categorias[$i] == 'infantil')
+         {
+            $_SESSION ['mensagem-de-sucesso'] = "O nadador ".$nome." compete na categoria ".$categorias[$i];
+            header('location: index.php');
+            return;
+            //echo "O nadador ".$nome." compete na categoria ". $categorias[$i];
+         }
     }
 }
 else if($idade >= 13 && $idade <= 18)
@@ -51,7 +68,12 @@ else if($idade >= 13 && $idade <= 18)
     for($i = 0; $i <=count($categorias)-1; $i++)
     {
         if($categorias[$i] == 'adolescente')
-            echo "O nadador ".$nome." compete na categoria ". $categorias[$i];
+        {
+            $_SESSION ['mensagem-de-sucesso'] = "O nadador ".$nome." compete na categoria ".$categorias[$i];
+            header('location: index.php');
+            return;
+            //echo "O nadador ".$nome." compete na categoria ". $categorias[$i];
+        }
     }
 }
 else if($idade >= 19 && $idade <= 64)
@@ -59,7 +81,12 @@ else if($idade >= 19 && $idade <= 64)
     for($i = 0; $i <=count($categorias)-1; $i++)
     {
         if($categorias[$i] == 'adulto')
-            echo "O nadador ".$nome." compete na categoria ". $categorias[$i];
+        {
+            $_SESSION ['mensagem-de-sucesso'] = "O nadador ".$nome." compete na categoria ".$categorias[$i];
+            header('location: index.php');
+            return;
+            //echo "O nadador ".$nome." compete na categoria ". $categorias[$i];
+        }
     }
 }
 else 
@@ -67,7 +94,12 @@ else
     for($i = 0; $i <=count($categorias)-1; $i++)
     {
         if($categorias[$i] == 'idoso')
-            echo "O nadador ".$nome." compete na categoria ". $categorias[$i];
+        {
+            $_SESSION ['mensagem-de-sucesso'] = "O nadador ".$nome." compete na categoria ".$categorias[$i];
+            header('location: index.php');
+            return;
+            //echo "O nadador ".$nome." compete na categoria ". $categorias[$i];
+        }
     }
 }
 ?>
