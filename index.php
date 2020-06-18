@@ -1,10 +1,9 @@
 <?php
 // abertura de sessão php
-    session_start ();
+  include "servicos/servicoMensagemSessao.php";
 ?>
 
 <doctype html>
-
 <html>
 
 <head>
@@ -25,13 +24,13 @@
     <p> <Input type="Submit" value='Enviar os seus dados!' /></p>
     
 <?php
-    $mensagemDeSucesso = isset ( $_SESSION [ 'mensagem-de-sucesso' ] )? $_SESSION ['mensagem-de-sucesso'] :'';
+    $mensagemDeSucesso = obterMensagemSucesso();
         if(!empty($mensagemDeSucesso))
         {
             echo $mensagemDeSucesso;
         }
     
-    $mensagemDeErro = isset ( $_SESSION [ 'mensagem-de-erro' ] )? $_SESSION ['mensagem-de-erro'] :'';
+    $mensagemDeErro = obterMensagemErro();
         if(!empty($mensagemDeErro))
         {
             echo $mensagemDeErro;
